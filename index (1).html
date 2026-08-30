@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sara Elsayed Taha — Network &amp; Cybersecurity Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0e17;
+    --bg-elevated:#0d1420;
+    --surface:#111a29;
+    --surface-2:#141f31;
+    --border:#1f2c40;
+    --border-soft:#182335;
+    --text:#e9eefb;
+    --text-dim:#8fa0bd;
+    --text-faint:#5c6d8a;
+    --cyan:#3fd0f2;
+    --cyan-dim:rgba(63,208,242,0.12);
+    --blue:#4c7cf0;
+    --amber:#f2b73f;
+    --radius:14px;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse 900px 500px at 85% -5%, rgba(76,124,240,0.12), transparent 60%),
+      radial-gradient(ellipse 700px 400px at 10% 8%, rgba(63,208,242,0.08), transparent 60%),
+      var(--bg);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.55;
+  }
+  h1,h2,h3,h4{
+    font-family:'Space Grotesk', sans-serif;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  .mono{font-family:'JetBrains Mono', monospace;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
+  section{padding:112px 0;position:relative;}
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    color:var(--cyan);
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:18px;
+    letter-spacing:0.02em;
+  }
+  .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan);}
+  .section-head{max-width:640px;margin-bottom:56px;}
+  .section-head h2{font-size:clamp(28px,3.4vw,40px);font-weight:600;color:var(--text);}
+  .section-head p{color:var(--text-dim);font-size:16px;margin-top:14px;}
+
+  /* grid background pattern */
+  .grid-bg{
+    position:absolute;inset:0;
+    background-image:
+      linear-gradient(to right, var(--border-soft) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--border-soft) 1px, transparent 1px);
+    background-size:64px 64px;
+    mask-image:radial-gradient(ellipse 100% 100% at 50% 0%, black 40%, transparent 90%);
+    opacity:0.5;
+    pointer-events:none;
+  }
+
+  /* ===== NAV ===== */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(10,14,23,0.78);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border-soft);
+  }
+  nav{max-width:var(--maxw);margin:0 auto;padding:16px 32px;display:flex;align-items:center;justify-content:space-between;}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;display:flex;align-items:center;gap:6px;}
+  .logo .cursor{color:var(--cyan);animation:blink 1.1s steps(1) infinite;}
+  @keyframes blink{50%{opacity:0;}}
+  .navlinks{display:flex;gap:30px;align-items:center;}
+  .navlinks a{font-size:14px;color:var(--text-dim);transition:color .2s;}
+  .navlinks a:hover{color:var(--cyan);}
+  .nav-cta{
+    font-family:'JetBrains Mono';font-size:13px;color:var(--bg)!important;
+    background:var(--cyan);padding:9px 18px;border-radius:8px;font-weight:600;
+    box-shadow:0 0 0 1px rgba(63,208,242,0.4);
+  }
+  .navtoggle{display:none;background:none;border:none;color:var(--text);font-size:24px;cursor:pointer;}
+
+  /* ===== HERO ===== */
+  .hero{padding:180px 0 120px;overflow:hidden;}
+  .hero-inner{display:grid;grid-template-columns:1.05fr 0.95fr;gap:40px;align-items:center;}
+  .hero h1{font-size:clamp(36px,5vw,58px);font-weight:700;line-height:1.08;color:var(--text);}
+  .hero h1 span{color:var(--cyan);}
+  .hero .role{
+    font-family:'JetBrains Mono';font-size:14px;color:var(--text-dim);margin-top:22px;
+    display:flex;gap:10px;flex-wrap:wrap;
+  }
+  .hero .role b{color:var(--text);font-weight:600;}
+  .hero p.intro{color:var(--text-dim);font-size:16.5px;margin-top:24px;max-width:520px;}
+  .cta-row{display:flex;gap:14px;margin-top:38px;flex-wrap:wrap;}
+  .btn-primary,.btn-secondary{
+    font-family:'JetBrains Mono';font-size:14px;padding:13px 24px;border-radius:9px;
+    display:inline-flex;align-items:center;gap:8px;transition:transform .15s, box-shadow .15s;
+  }
+  .btn-primary{background:var(--cyan);color:#04141c;font-weight:600;box-shadow:0 0 24px rgba(63,208,242,0.25);}
+  .btn-primary:hover{transform:translateY(-2px);}
+  .btn-secondary{border:1px solid var(--border);color:var(--text);}
+  .btn-secondary:hover{border-color:var(--cyan);color:var(--cyan);}
+  .hero-stats{display:flex;gap:30px;margin-top:52px;flex-wrap:wrap;}
+  .hero-stats div{border-left:2px solid var(--border);padding-left:14px;}
+  .hero-stats .num{font-family:'Space Grotesk';font-size:22px;font-weight:700;color:var(--text);}
+  .hero-stats .lbl{font-size:12.5px;color:var(--text-faint);font-family:'JetBrains Mono';margin-top:2px;}
+
+  /* hero photo card */
+  .photo-wrap{position:relative;max-width:400px;margin-left:auto;}
+  .photo-card{
+    position:relative;border-radius:18px;overflow:hidden;
+    border:1px solid var(--border);
+    box-shadow:0 0 0 1px rgba(63,208,242,0.08), 0 30px 60px -20px rgba(0,0,0,0.6);
+    aspect-ratio:1/1.08;
+  }
+  .photo-card img{width:100%;height:100%;object-fit:cover;display:block;}
+  .photo-card::before{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg, transparent 55%, rgba(10,14,23,0.85) 100%);
+    pointer-events:none;
+  }
+  .photo-corner{position:absolute;width:22px;height:22px;border-color:var(--cyan);opacity:0.9;pointer-events:none;}
+  .photo-corner.tl{top:14px;left:14px;border-top:2px solid;border-left:2px solid;}
+  .photo-corner.br{bottom:14px;right:14px;border-bottom:2px solid;border-right:2px solid;}
+  .photo-tag{
+    position:absolute;left:16px;bottom:14px;font-family:'JetBrains Mono';font-size:11px;
+    color:var(--cyan);background:rgba(10,14,23,0.55);padding:5px 10px;border-radius:6px;
+    border:1px solid rgba(63,208,242,0.3);backdrop-filter:blur(4px);
+  }
+  .photo-glow{
+    position:absolute;top:-30px;right:-30px;width:180px;height:180px;
+    background:radial-gradient(circle, rgba(63,208,242,0.18), transparent 70%);
+    pointer-events:none;z-index:-1;
+  }
+
+  /* project images */
+  .proj-image{
+    width:calc(100% + 56px);margin:-28px -28px 4px;border-radius:var(--radius) var(--radius) 0 0;
+    overflow:hidden;border-bottom:1px solid var(--border);position:relative;
+  }
+  .proj-image img{width:100%;height:170px;object-fit:cover;display:block;filter:saturate(0.92) brightness(0.95);}
+  .proj-image .cap{
+    position:absolute;bottom:8px;right:10px;font-family:'JetBrains Mono';font-size:10px;color:var(--cyan);
+    background:rgba(10,14,23,0.6);padding:3px 8px;border-radius:5px;border:1px solid rgba(63,208,242,0.25);
+  }
+
+  /* topology svg */
+  .topo-wrap{position:relative;}
+  .topo-wrap svg{width:100%;height:auto;overflow:visible;}
+  .node-label{font-family:'JetBrains Mono';font-size:9.5px;fill:var(--text-faint);}
+  .node-tag{font-family:'JetBrains Mono';font-size:9px;fill:var(--cyan);}
+  .packet{fill:var(--cyan);filter:drop-shadow(0 0 6px var(--cyan));}
+  .link-line{stroke:var(--border);stroke-width:1.4;fill:none;}
+  .node-box{fill:var(--surface);stroke:var(--border);stroke-width:1.2;}
+  .node-box.active{stroke:var(--cyan);}
+
+  /* ===== FLOW STRIP ===== */
+  .flow-strip{border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);background:var(--bg-elevated);padding:40px 0;}
+  .flow-row{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;}
+  .flow-step{display:flex;align-items:center;gap:10px;flex:1;min-width:140px;justify-content:center;}
+  .flow-step .dot{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono';font-size:13px;color:var(--cyan);flex-shrink:0;}
+  .flow-step span.txt{font-family:'Space Grotesk';font-size:14.5px;color:var(--text);white-space:nowrap;}
+  .flow-arrow{color:var(--text-faint);font-size:16px;flex-shrink:0;}
+
+  /* ===== ABOUT ===== */
+  .about-grid{display:grid;grid-template-columns:0.9fr 1.1fr;gap:56px;align-items:start;}
+  .about-grid p{color:var(--text-dim);font-size:16px;margin:0 0 16px;}
+  .about-grid strong{color:var(--text);font-weight:600;}
+  .about-side{display:flex;flex-direction:column;gap:16px;}
+  .info-card{
+    background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    padding:18px 20px;
+  }
+  .info-card .k{font-family:'JetBrains Mono';font-size:11.5px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.06em;}
+  .info-card .v{font-size:14.5px;color:var(--text);margin-top:6px;}
+
+  /* ===== SKILLS ===== */
+  .skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .skill-card{
+    background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    padding:26px 22px;transition:border-color .2s, transform .2s;
+  }
+  .skill-card:hover{border-color:var(--cyan);transform:translateY(-3px);}
+  .skill-card .icon{width:38px;height:38px;border-radius:9px;background:var(--cyan-dim);display:flex;align-items:center;justify-content:center;margin-bottom:16px;color:var(--cyan);}
+  .skill-card h3{font-size:16px;font-weight:600;margin-bottom:12px;}
+  .tag-list{display:flex;flex-wrap:wrap;gap:7px;}
+  .tag{
+    font-family:'JetBrains Mono';font-size:11.5px;color:var(--text-dim);
+    border:1px solid var(--border-soft);padding:4px 9px;border-radius:6px;
+  }
+
+  /* ===== CERTS TIMELINE ===== */
+  .timeline{position:relative;padding-left:28px;border-left:1.5px solid var(--border);}
+  .tl-item{position:relative;padding-bottom:34px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:"";position:absolute;left:-33.5px;top:4px;width:11px;height:11px;border-radius:50%;
+    background:var(--bg);border:2px solid var(--cyan);
+  }
+  .tl-item .date{font-family:'JetBrains Mono';font-size:12px;color:var(--cyan);}
+  .tl-item h4{font-size:16px;font-weight:600;margin-top:6px;color:var(--text);}
+  .tl-item .org{font-size:13.5px;color:var(--text-dim);margin-top:2px;}
+  .tl-item.dim{opacity:0.75;}
+
+  /* ===== PROJECTS ===== */
+  .proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .proj-card{
+    background:linear-gradient(180deg, var(--surface), var(--surface-2));
+    border:1px solid var(--border);border-radius:var(--radius);
+    padding:28px;display:flex;flex-direction:column;gap:14px;
+  }
+  .proj-card .proj-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;}
+  .proj-card h3{font-size:19px;font-weight:600;}
+  .proj-tools{display:flex;flex-wrap:wrap;gap:6px;}
+  .proj-row{font-size:14px;color:var(--text-dim);}
+  .proj-row b{font-family:'JetBrains Mono';font-size:11px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.05em;display:block;margin-bottom:4px;}
+  .proj-outcome{
+    margin-top:auto;padding-top:14px;border-top:1px solid var(--border-soft);
+    font-size:13.5px;color:var(--cyan);display:flex;gap:8px;align-items:flex-start;
+  }
+
+  /* ===== SERVICES ===== */
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .svc-card{
+    border:1px solid var(--border);border-radius:var(--radius);padding:26px;
+    background:var(--surface);position:relative;overflow:hidden;
+  }
+  .svc-card::after{content:"";position:absolute;top:-40%;right:-30%;width:140px;height:140px;background:radial-gradient(circle, var(--cyan-dim), transparent 70%);}
+  .svc-card h3{font-size:16.5px;font-weight:600;margin-bottom:10px;}
+  .svc-card p{font-size:14px;color:var(--text-dim);margin:0;}
+  .svc-num{font-family:'JetBrains Mono';font-size:12px;color:var(--text-faint);margin-bottom:14px;display:block;}
+
+  /* ===== WHY ===== */
+  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+  .why-item{background:var(--bg-elevated);padding:30px 26px;}
+  .why-item h4{font-size:15.5px;font-weight:600;margin-bottom:10px;color:var(--text);}
+  .why-item p{font-size:13.8px;color:var(--text-dim);margin:0;}
+
+  /* ===== CONTACT ===== */
+  .contact-box{
+    background:linear-gradient(135deg, var(--surface), var(--bg-elevated));
+    border:1px solid var(--border);border-radius:20px;padding:56px;
+    display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;align-items:center;
+    position:relative;overflow:hidden;
+  }
+  .contact-box h2{font-size:clamp(26px,3vw,36px);font-weight:600;margin-bottom:14px;}
+  .contact-box p{color:var(--text-dim);font-size:15.5px;max-width:420px;}
+  .contact-list{display:flex;flex-direction:column;gap:16px;}
+  .contact-row{display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--border-soft);padding-bottom:14px;}
+  .contact-row:last-child{border-bottom:none;}
+  .contact-row .ic{width:36px;height:36px;border-radius:9px;background:var(--cyan-dim);display:flex;align-items:center;justify-content:center;color:var(--cyan);flex-shrink:0;}
+  .contact-row .lbl{font-family:'JetBrains Mono';font-size:11px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.05em;}
+  .contact-row .val{font-size:14.5px;color:var(--text);margin-top:2px;}
+
+  footer{padding:36px 0;border-top:1px solid var(--border-soft);}
+  .foot-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+  .foot-row .mono{font-size:12.5px;color:var(--text-faint);}
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width:980px){
+    .hero-inner{grid-template-columns:1fr;}
+    .photo-wrap{order:-1;max-width:300px;margin:0 auto 30px;}
+    .about-grid{grid-template-columns:1fr;}
+    .skills-grid{grid-template-columns:repeat(2,1fr);}
+    .proj-grid{grid-template-columns:1fr;}
+    .svc-grid{grid-template-columns:repeat(2,1fr);}
+    .why-grid{grid-template-columns:1fr;}
+    .contact-box{grid-template-columns:1fr;padding:36px;}
+  }
+  @media (max-width:640px){
+    .navlinks{display:none;}
+    .navtoggle{display:block;}
+    section{padding:80px 0;}
+    .skills-grid{grid-template-columns:1fr;}
+    .svc-grid{grid-template-columns:1fr;}
+    .wrap{padding:0 20px;}
+    .flow-row{flex-direction:column;align-items:flex-start;}
+    .flow-arrow{transform:rotate(90deg);margin-left:17px;}
+    .hero-stats{gap:20px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none!important;transition:none!important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">SE<span class="cursor">_</span></div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#projects">Projects</a>
+      <a href="#services">Services</a>
+      <a href="#contact" class="nav-cta">Contact</a>
+    </div>
+    <button class="navtoggle" aria-label="menu">☰</button>
+  </nav>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="grid-bg"></div>
+  <div class="wrap hero-inner">
+    <div>
+      <div class="eyebrow">network &amp; cybersecurity engineer</div>
+      <h1>From packet to<br>policy — I build and <span>defend</span> networks that hold.</h1>
+      <div class="role"><b>Sara Elsayed Taha</b> · Electronics &amp; Communications Engineering · Fortinet Certified</div>
+      <p class="intro">Entry-level network &amp; cybersecurity professional with hands-on experience configuring enterprise firewalls, routing infrastructure, and analyzing live mobile networks — currently instructing the next group of network security students at GDG Al-Azhar.</p>
+      <div class="cta-row">
+        <a href="#projects" class="btn-primary">$ view-projects →</a>
+        <a href="#contact" class="btn-secondary">Get in touch</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="num">15+</div><div class="lbl">CERTS &amp; TRAININGS</div></div>
+        <div><div class="num">2G–5G</div><div class="lbl">MOBILE NETWORKS</div></div>
+        <div><div class="num">34</div><div class="lbl">STUDENTS INSTRUCTED</div></div>
+      </div>
+    </div>
+
+    <div class="photo-wrap">
+      <div class="photo-glow"></div>
+      <div class="photo-card">
+        <img src="assets/profile.jpg" alt="Sara Elsayed Taha">
+        <div class="photo-corner tl"></div>
+        <div class="photo-corner br"></div>
+        <div class="photo-tag">// sara_elsayed.jpg</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TOPOLOGY DIVIDER ================= -->
+<div style="background:var(--bg);overflow:hidden;height:110px;position:relative;border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+  <svg viewBox="0 0 1180 110" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;opacity:0.55;" preserveAspectRatio="xMidYMid slice">
+    <path id="d1" class="link-line" d="M120,55 L340,20"/>
+    <path id="d2" class="link-line" d="M340,20 L340,90"/>
+    <path id="d3" class="link-line" d="M340,90 L590,55"/>
+    <path id="d4" class="link-line" d="M590,55 L840,20"/>
+    <path id="d5" class="link-line" d="M590,55 L840,90"/>
+    <path id="d6" class="link-line" d="M840,90 L1060,55"/>
+    <circle cx="120" cy="55" r="4" fill="var(--cyan)"/>
+    <circle cx="340" cy="20" r="4" fill="var(--text-faint)"/>
+    <circle cx="340" cy="90" r="4" fill="var(--text-faint)"/>
+    <circle cx="590" cy="55" r="5" fill="var(--cyan)"/>
+    <circle cx="840" cy="20" r="4" fill="var(--text-faint)"/>
+    <circle cx="840" cy="90" r="4" fill="var(--text-faint)"/>
+    <circle cx="1060" cy="55" r="4" fill="var(--cyan)"/>
+    <text x="120" y="40" text-anchor="middle" class="node-label" font-size="9">edge</text>
+    <text x="590" y="40" text-anchor="middle" class="node-tag" font-size="9">FortiGate</text>
+    <text x="1060" y="40" text-anchor="middle" class="node-label" font-size="9">endpoint</text>
+    <circle class="packet" r="3.5">
+      <animateMotion dur="3.5s" repeatCount="indefinite"><mpath href="#d1"/></animateMotion>
+    </circle>
+    <circle class="packet" r="3.5">
+      <animateMotion dur="2.6s" repeatCount="indefinite" begin="0.6s"><mpath href="#d3"/></animateMotion>
+    </circle>
+    <circle class="packet" r="3.5">
+      <animateMotion dur="2.8s" repeatCount="indefinite" begin="1.1s"><mpath href="#d5"/></animateMotion>
+    </circle>
+    <circle class="packet" r="3.5">
+      <animateMotion dur="2.4s" repeatCount="indefinite" begin="0.3s"><mpath href="#d6"/></animateMotion>
+    </circle>
+  </svg>
+</div>
+
+<!-- ================= FLOW STRIP ================= -->
+<div class="flow-strip">
+  <div class="wrap">
+    <div class="flow-row">
+      <div class="flow-step"><div class="dot">U</div><span class="txt">Understand</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step"><div class="dot">C</div><span class="txt">Configure</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step"><div class="dot">T</div><span class="txt">Troubleshoot</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step"><div class="dot">S</div><span class="txt">Secure</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step"><div class="dot">M</div><span class="txt">Monitor</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div>
+        <div class="eyebrow">$ whoami</div>
+        <h2 style="font-size:clamp(26px,3vw,34px);font-weight:600;margin-bottom:22px;">About Me</h2>
+        <p>I'm an <strong>Electronics &amp; Communications Engineering</strong> student (graduating January 2027) building a career at the intersection of <strong>networking and cybersecurity</strong>. My path has been hands-on from the start — configuring VLANs and OSPF in Packet Tracer and GNS3 before I ever touched a production firewall.</p>
+        <p>I'm a certified <strong>Fortinet Cybersecurity Engineer</strong>, trained on FortiGate and FortiManager administration, and I approach every network the same way: understand how it's built, configure it correctly, and know how to troubleshoot it when it breaks.</p>
+        <p>I currently instruct <strong>network security fundamentals</strong> at GDG Al-Azhar, which keeps me sharp — you don't really know a protocol until you can explain subnetting to 34 people and answer their "but why" questions in real time.</p>
+      </div>
+      <div class="about-side">
+        <div class="info-card">
+          <div class="k">Currently</div>
+          <div class="v">Network &amp; Security Instructor, GDG Al-Azhar</div>
+        </div>
+        <div class="info-card">
+          <div class="k">Education</div>
+          <div class="v">B.Eng. Electronics &amp; Communications Engineering — Higher Technological Institute (HTI) · GPA 3.87/4.00 · Expected Jan 2027</div>
+        </div>
+        <div class="info-card">
+          <div class="k">Focus areas</div>
+          <div class="v">Network Security · Routing &amp; Switching · Firewall Administration · Mobile Network Analysis</div>
+        </div>
+        <div class="info-card">
+          <div class="k">Languages</div>
+          <div class="v">Arabic (Native) · English (Professional) · German (Intermediate)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SKILLS ================= -->
+<section id="skills" style="background:var(--bg-elevated);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">$ skills --list</div>
+      <h2>Technical Skills</h2>
+      <p>A working toolkit across networking fundamentals, security operations, and the mobile networks that connect them.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="icon">◆</div>
+        <h3>Networking</h3>
+        <div class="tag-list">
+          <span class="tag">TCP/IP</span><span class="tag">OSI Model</span><span class="tag">Routing &amp; Switching</span>
+          <span class="tag">VLANs</span><span class="tag">OSPF</span><span class="tag">RIP</span>
+          <span class="tag">DHCP</span><span class="tag">DNS</span><span class="tag">NAT</span>
+          <span class="tag">IP Subnetting</span><span class="tag">Cisco Packet Tracer</span><span class="tag">GNS3</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="icon">◆</div>
+        <h3>Cybersecurity</h3>
+        <div class="tag-list">
+          <span class="tag">FortiGate</span><span class="tag">FortiManager</span><span class="tag">Kali Linux</span>
+          <span class="tag">Metasploit</span><span class="tag">Nessus</span><span class="tag">Penetration Testing</span>
+          <span class="tag">Ethical Hacking</span><span class="tag">Vulnerability Assessment</span>
+          <span class="tag">Threat Hunting</span><span class="tag">Log Analysis</span><span class="tag">IDS/IPS</span>
+          <span class="tag">Firewall &amp; NAT Config</span><span class="tag">Cloud Security Auditing</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="icon">◆</div>
+        <h3>Mobile Networks</h3>
+        <div class="tag-list">
+          <span class="tag">2G (GSM)</span><span class="tag">3G (UMTS)</span><span class="tag">4G (LTE)</span>
+          <span class="tag">5G NR</span><span class="tag">Drive Testing</span><span class="tag">TEMS Investigation</span>
+          <span class="tag">KPI Analysis</span><span class="tag">Handover Analysis</span><span class="tag">Coverage Optimization</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="icon">◆</div>
+        <h3>Programming &amp; Systems</h3>
+        <div class="tag-list">
+          <span class="tag">Python</span><span class="tag">NumPy</span><span class="tag">Pandas</span>
+          <span class="tag">Tkinter</span><span class="tag">C</span><span class="tag">C++</span>
+          <span class="tag">Red Hat Enterprise Linux</span><span class="tag">Kali Linux</span><span class="tag">Windows</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CERTIFICATIONS ================= -->
+<section id="certifications">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">$ cat certifications.log</div>
+      <h2>Certifications &amp; Training</h2>
+      <p>A steady, ongoing track record — from network fundamentals to Fortinet-certified security engineering.</p>
+    </div>
+    <div class="timeline">
+      <div class="tl-item dim">
+        <div class="date">JUL 2026 – PRESENT</div>
+        <h4>Cyber Security Incident Response Analyst</h4>
+        <div class="org">Digital Egypt Pioneers Initiative (DEPI)</div>
+      </div>
+      <div class="tl-item">
+        <div class="date">JUL 2026</div>
+        <h4>Basic Communication Training</h4>
+        <div class="org">Systel</div>
+      </div>
+      <div class="tl-item">
+        <div class="date">APR – JUN 2026</div>
+        <h4>Cybersecurity for Beginners</h4>
+        <div class="org">MaharaTech / ITI</div>
+      </div>
+      <div class="tl-item">
+        <div class="date">MAY – JUN 2026</div>
+        <h4>Red Hat System Administration I</h4>
+        <div class="org">Red Hat</div>
+      </div>
+      <div class="tl-item">
+        <div class="date">MAY 2026</div>
+        <h4>Implementation of Computer Network Fundamentals</h4>
+        <div class="org">Training Program</div>
+      </div>
+      <div class="tl-item">
+        <div class="date">APR – MAY 2026</div>
+        <h4>Ethical Hacking</h4>
+        <div class="org">Training Program</div>
+      </div>
+      <div class="tl-item">
+        <div class="date">APR – MAY 2026</div>
+        <h4>Cyber Security Fundamentals — Infrastructure &amp; Security Track</h4>
+        <div class="org">Sprints</div>
+      </div>
+      <div class="tl-item">
+        <div class="date">APR 2026</div>
+        <h4>Introduction to Network Security · Computer Network Fundamentals</h4>
+        <div class="org">Training Program</div>
+      </div>
+      <div class="tl-item">
+        <div class="date">JUN 2025 – JAN 2026</div>
+        <h4>Fortinet Cybersecurity Engineer</h4>
+        <div class="org">Digital Egypt Pioneers Initiative (DEPI)</div>
+      </div>
+      <div class="tl-item">
+        <div class="date">NOV 2025 – JAN 2026</div>
+        <h4>FCP Network Security — FortiManager Administration 7.4</h4>
+        <div class="org">Fortinet</div>
+      </div>
+      <div class="tl-item">
+        <div class="date">SEP – NOV 2025</div>
+        <h4>FCP Network Security — FortiGate Administration 7.4</h4>
+        <div class="org">Fortinet</div>
+      </div>
+      <div class="tl-item">
+        <div class="date">SEP – OCT 2025</div>
+        <h4>Cyber Security Academy — Phase 2</h4>
+        <div class="org">National Telecommunication Institute (NTI)</div>
+      </div>
+      <div class="tl-item">
+        <div class="date">JUN – SEP 2025</div>
+        <h4>Cisco CCNA Routing &amp; Switching (200-301)</h4>
+        <div class="org">Cisco</div>
+      </div>
+      <div class="tl-item">
+        <div class="date">JUN – SEP 2025</div>
+        <h4>Mobile Networks (2G/3G/4G/5G) &amp; Drive Test</h4>
+        <div class="org">Trust Academy</div>
+      </div>
+      <div class="tl-item">
+        <div class="date">JUN – AUG 2024</div>
+        <h4>Basic Electronics &amp; PCB Design</h4>
+        <div class="org">Jelecom Company</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROJECTS ================= -->
+<section id="projects" style="background:var(--bg-elevated);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">$ ls ./projects</div>
+      <h2>Projects &amp; Practical Labs</h2>
+      <p>Hands-on labs where the concepts got tested against real configurations, not just slides.</p>
+    </div>
+    <div class="proj-grid">
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <h3>FortiGate Network Security Lab</h3>
+        </div>
+        <div class="proj-tools">
+          <span class="tag">FortiGate</span><span class="tag">NAT</span><span class="tag">IDS/IPS</span>
+        </div>
+        <div class="proj-row"><b>Objective</b>Build a secured perimeter for a simulated enterprise network.</div>
+        <div class="proj-row"><b>Scenario</b>An unsecured network segment needed controlled external access and protection against simulated intrusion attempts.</div>
+        <div class="proj-row"><b>Implemented</b>Configured FortiGate firewall policies, NAT rules (port forwarding and source NAT), user access control policies, and IDS/IPS rules — then documented the full configuration in a final report and presentation.</div>
+        <div class="proj-outcome">→ Achieved fully controlled access policy and mitigated simulated external threats end to end.</div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-image">
+          <img src="assets/cisco-topology.png" alt="Cisco Packet Tracer network topology with router, switches, and VLANs">
+          <div class="cap">Packet Tracer topology</div>
+        </div>
+        <div class="proj-top">
+          <h3>Cisco Network Infrastructure</h3>
+        </div>
+        <div class="proj-tools">
+          <span class="tag">Packet Tracer</span><span class="tag">GNS3</span><span class="tag">OSPF / RIP</span>
+        </div>
+        <div class="proj-row"><b>Objective</b>Design a multi-VLAN enterprise LAN with reliable inter-VLAN routing.</div>
+        <div class="proj-row"><b>Scenario</b>Multiple departments needed logical network separation while still communicating over a shared switching fabric.</div>
+        <div class="proj-row"><b>Implemented</b>Designed multi-VLAN networks running OSPF and RIP with DHCP and inter-VLAN routing, simulating DHCP servers and layered switching across 5+ network topologies.</div>
+        <div class="proj-outcome">→ Zero packet loss in simulated inter-VLAN communication.</div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-image">
+          <img src="assets/drive-test-map.png" alt="Drive test route map showing 2G-5G coverage measurement path">
+          <div class="cap">Drive test route map</div>
+        </div>
+        <div class="proj-top">
+          <h3>Mobile Network Drive Test &amp; Post-Processing</h3>
+        </div>
+        <div class="proj-tools">
+          <span class="tag">TEMS Investigation</span><span class="tag">2G–5G</span><span class="tag">KPI Analysis</span>
+        </div>
+        <div class="proj-row"><b>Objective</b>Assess live network performance across generations of mobile technology.</div>
+        <div class="proj-row"><b>Scenario</b>Field coverage and handover quality needed to be measured and validated against expected KPIs.</div>
+        <div class="proj-row"><b>Implemented</b>Collected and analyzed live drive test data using TEMS Investigation across 2G, 3G, 4G, and 5G networks, evaluating KPIs, coverage quality, and handover performance.</div>
+        <div class="proj-outcome">→ Identified coverage gaps and contributed findings to network optimization recommendations.</div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <h3>Python Applications</h3>
+        </div>
+        <div class="proj-tools">
+          <span class="tag">Python</span><span class="tag">Tkinter</span><span class="tag">OOP</span>
+        </div>
+        <div class="proj-row"><b>Objective</b>Strengthen software fundamentals that support scripting and automation in security tooling.</div>
+        <div class="proj-row"><b>Scenario</b>Practical, self-directed builds to apply object-oriented programming and GUI development.</div>
+        <div class="proj-row"><b>Implemented</b>Developed a GUI calculator (Tkinter), a Tic-Tac-Toe game, and a quiz app with a scoring system.</div>
+        <div class="proj-outcome">→ Demonstrated proficiency in OOP and GUI development, useful for building internal tools.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">$ services --available</div>
+      <h2>Services</h2>
+      <p>Practical support for teams and individuals who need networks configured, secured, or documented properly.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card">
+        <span class="svc-num">/01</span>
+        <h3>Network Configuration &amp; Troubleshooting</h3>
+        <p>Design, configure, and troubleshoot routed and switched networks — from VLANs to OSPF — so traffic flows the way it's supposed to.</p>
+      </div>
+      <div class="svc-card">
+        <span class="svc-num">/02</span>
+        <h3>Cisco &amp; GNS3 Network Labs</h3>
+        <p>Build and test network topologies in Packet Tracer and GNS3 before anything touches production hardware.</p>
+      </div>
+      <div class="svc-card">
+        <span class="svc-num">/03</span>
+        <h3>FortiGate &amp; FortiManager Security</h3>
+        <p>Configure firewall policies, NAT, access control, and IDS/IPS rules on Fortinet infrastructure.</p>
+      </div>
+      <div class="svc-card">
+        <span class="svc-num">/04</span>
+        <h3>Vulnerability Assessment &amp; Ethical Hacking</h3>
+        <p>Run structured vulnerability scans and penetration tests using Kali Linux, Metasploit, and Nessus, with findings you can actually act on.</p>
+      </div>
+      <div class="svc-card">
+        <span class="svc-num">/05</span>
+        <h3>Technical Reports &amp; Documentation</h3>
+        <p>Turn configurations and lab results into clear, structured technical reports that hold up for handover or review.</p>
+      </div>
+      <div class="svc-card">
+        <span class="svc-num">/06</span>
+        <h3>ATS-Optimized CV &amp; LinkedIn Profiles</h3>
+        <p>Rework CVs and LinkedIn profiles for networking and cybersecurity roles so they pass ATS screening and read clearly to recruiters.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY WORK WITH ME ================= -->
+<section style="background:var(--bg-elevated);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">$ diff me ./others</div>
+      <h2>Why Work With Me</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item">
+        <h4>Engineering foundation, not just IT training</h4>
+        <p>An Electronics &amp; Communications Engineering background means I understand networks from the signal up, not only from the config file down.</p>
+      </div>
+      <div class="why-item">
+        <h4>Fortinet-certified, not self-taught claims</h4>
+        <p>FCP-level training in FortiGate and FortiManager administration backs up the firewall and NAT work I do — it's documented, not assumed.</p>
+      </div>
+      <div class="why-item">
+        <h4>Lab-tested before it's trusted</h4>
+        <p>Every configuration I bring up has already been built and broken in Packet Tracer, GNS3, or a live drive test — I troubleshoot before I ship.</p>
+      </div>
+      <div class="why-item">
+        <h4>Security mindset across the stack</h4>
+        <p>From IDS/IPS rules to vulnerability scans with Nessus and Metasploit, I think about what could go wrong at every layer, not just the firewall.</p>
+      </div>
+      <div class="why-item">
+        <h4>I can explain it, not just do it</h4>
+        <p>Instructing 34 students in networking fundamentals means I can translate technical decisions into something a non-technical stakeholder understands.</p>
+      </div>
+      <div class="why-item">
+        <h4>Certification isn't a one-time event</h4>
+        <p>Fifteen-plus certifications and trainings completed since 2024 — this is an active, ongoing track record, not a single course finished years ago.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-box">
+      <div class="grid-bg"></div>
+      <div>
+        <div class="eyebrow">$ ping sara --connect</div>
+        <h2>Let's build something secure.</h2>
+        <p>Open to entry-level network &amp; cybersecurity roles, internships, and freelance networking/security projects. Reach out — I reply quickly.</p>
+        <div class="cta-row">
+          <a href="mailto:sara.elsayedd679@gmail.com" class="btn-primary">Send an email →</a>
+        </div>
+      </div>
+      <div class="contact-list">
+        <div class="contact-row">
+          <div class="ic">@</div>
+          <div><div class="lbl">Email</div><div class="val">sara.elsayedd679@gmail.com</div></div>
+        </div>
+        <div class="contact-row">
+          <div class="ic">☎</div>
+          <div><div class="lbl">Phone</div><div class="val">+20 120 523 3679</div></div>
+        </div>
+        <div class="contact-row">
+          <div class="ic">in</div>
+          <div><div class="lbl">LinkedIn</div><div class="val">linkedin.com/in/sara-elsayed679</div></div>
+        </div>
+        <div class="contact-row">
+          <div class="ic">◎</div>
+          <div><div class="lbl">Location</div><div class="val">Giza, Egypt</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-row">
+    <div class="mono">© 2026 Sara Elsayed Taha — Network &amp; Cybersecurity Engineer</div>
+    <div class="mono">Built with intent, not templates.</div>
+  </div>
+</footer>
+
+</body>
+</html>
